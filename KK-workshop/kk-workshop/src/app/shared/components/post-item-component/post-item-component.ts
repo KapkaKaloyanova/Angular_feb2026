@@ -8,5 +8,5 @@ import { Post } from '../../interfaces/post';
   styleUrl: './post-item-component.css',
 })
 export class PostItemComponent {
-  @Input({required: true}) post!: Post;
+  @Input({ required: true }) post!: Post;
 }

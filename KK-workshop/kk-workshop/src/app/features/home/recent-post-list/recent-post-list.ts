@@ -6,7 +6,6 @@ import { PostItemComponent } from '../../../shared/components/post-item-componen
 @Component({
   selector: 'app-recent-post-list',
   imports: [PostItemComponent],
-  providers: [ApiService],
   templateUrl: './recent-post-list.html',
   styleUrl: './recent-post-list.css',
 })

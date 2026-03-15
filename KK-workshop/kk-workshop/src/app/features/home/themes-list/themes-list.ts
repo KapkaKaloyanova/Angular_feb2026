@@ -6,7 +6,6 @@ import { ThemeItemComponent } from '../../../shared/components/theme-item-compon
 @Component({
   selector: 'app-themes-list',
   imports: [ThemeItemComponent],
-  providers: [ApiService],
   templateUrl: './themes-list.html',
   styleUrl: './themes-list.css',
 })
