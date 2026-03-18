@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit, OnDestroy {
   companyName = 'Games Depot';
   foundYear = '2019';
 
@@ -21,4 +21,5 @@ export class AboutComponent {
   ngOnDestroy() {
     console.log('DELETED');
   }
+
 }
