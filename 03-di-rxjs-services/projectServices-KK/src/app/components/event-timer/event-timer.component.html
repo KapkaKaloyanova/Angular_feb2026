@@ -1,0 +1,14 @@
+<div class="rxdemo-container">
+  <h3>Event timer Showcase</h3>
+
+  <h2>Стойност: {{ displayValue }}</h2>
+  <div class="rxdemo-buttons">
+    <button class="btn increment" (click)="start()">Старт</button>
+    <button class="btn decrement" (click)="stop()">Стоп</button>
+  </div>
+  <h2>интервал: {{ updateInterval / 1000 }} сек</h2>
+  <div class="rxdemo-buttons">
+    <button class="btn reset" (click)="changeInterval(500)">0.5 сек</button>
+    <button class="btn reset" (click)="changeInterval(3000)">3 сек</button>
+  </div>
+</div>

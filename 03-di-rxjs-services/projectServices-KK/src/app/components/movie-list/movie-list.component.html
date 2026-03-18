@@ -1,0 +1,11 @@
+<div class="movie-container">
+  <h3>Моите Филми</h3>
+
+  @for (movie of movies$ | async; track movie.title) {
+    <div>
+      <strong>{{ movie.title | uppercase }}</strong> - ⭐ {{ movie.rating }}
+    </div>
+  } @empty {
+    <p>Няма намерени филми.</p>
+  }
+</div>
