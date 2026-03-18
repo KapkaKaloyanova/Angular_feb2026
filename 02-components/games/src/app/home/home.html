@@ -1,0 +1,16 @@
+<div class="home">
+  <h2>{{ welcomeMessage }}</h2>
+
+  <p>
+    {{ description }}
+  </p>
+
+  <h3>Features:</h3>
+  <ul>
+    @for (feature of features; track $index) {
+      <li>{{ feature }}</li>
+    } @empty {
+      <li>Списъкът e празен.</li>
+    }
+  </ul>
+</div>
