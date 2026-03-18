@@ -1,5 +1,14 @@
+
 <div class="movie-container">
-  <h3>Моите Филми</h3>
+  <div class="stats-card">
+    <h3>Статистика</h3>
+    <p>Среден рейтинг: 
+      <strong>{{ averageRating$ | async | number:'1.1-1' }}</strong> ⭐
+    </p>
+  </div>
+  
+  <hr>
+  <h3>Филми със среден рейтинг</h3>
 
   @for (movie of movies$ | async; track movie.title) {
     <div>
