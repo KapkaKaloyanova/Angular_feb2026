@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Game } from '../models/game.model';
 import { GameCardComponent } from '../game-card/game-card.component';
 
@@ -9,8 +9,10 @@ import { GameCardComponent } from '../game-card/game-card.component';
   templateUrl: './games.component.html',
   styleUrl: './games.component.css',
 })
-export class GamesComponent {
+export class GamesComponent implements OnInit, OnDestroy {
+  @Input('game')
   games: Game[] = [];
+  cart: Game[] = [];
 
   ngOnInit() {
     console.log('Games Component is created');
@@ -46,5 +48,10 @@ export class GamesComponent {
 
   ngOnDestroy() {
     console.log('Games Component is destroyed');
+  }
+
+  onAddToCart(game: Game) {
+    this.cart.push(game);
+    console.log(`Added ${game.title} to cart. Total items: ${this.cart.length}`);
   }
 }

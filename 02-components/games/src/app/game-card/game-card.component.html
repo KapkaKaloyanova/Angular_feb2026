@@ -1,1 +1,8 @@
-<p>game-card works!</p>
+<div class="card">
+  <!-- <h3>game-card works</h3> -->
+  <img [src]="game.imageUrl" [alt]="game.title" />
+  <h3>{{ game.title }}</h3>
+  <div class="price">{{ game.price }} euro</div>
+
+  <button class="btn-buy" (click)="onBuyClick()">Add to Cart</button>
+</div>
