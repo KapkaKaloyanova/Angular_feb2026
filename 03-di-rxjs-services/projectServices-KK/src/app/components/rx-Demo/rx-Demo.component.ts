@@ -14,6 +14,14 @@ import { Observable, Subscription, take } from 'rxjs';
         Данни от потока: <strong>{{ dataSignal() }}</strong>
       </p>
       <button (click)="restart()">Стартирай наново</button>
+      <div style="margin-top: 20px; text-align: center; border-top: 1px solid #ccc;">
+        <h3>Използвани технологии</h3>
+        <ul style="display: inline-block; text-align: center; list-style-position: inside; margin-top: 0px;">
+          <li style="margin-bottom: 10px;"><strong>RxJS</strong><br>new Observable, .pipe(take(5)), .subscribe()</li>
+          <li style="margin-bottom: 10px;"><strong>Signal</strong><br>dataSignal = signal(...) и this.dataSignal.set()</li>
+          <li style="margin-bottom: 10px;"><strong>Lifecycle Hooks</strong><br>ngOnInit, ngOnDestroy</li>
+        </ul>
+      </div>
     </div>
   `,
 })
