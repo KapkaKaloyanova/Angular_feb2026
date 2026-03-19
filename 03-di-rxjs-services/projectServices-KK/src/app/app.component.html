@@ -1,14 +1,23 @@
 <div class="app">
   <header>
     <h1>Angular project</h1>
+    <nav>
+      <button (click)="changeView('home')">Home</button>
+      <button (click)="changeView('counter')">Counter</button>
+      <button (click)="changeView('rxjsdemo')">RxJS</button>
+    </nav>
   </header>
 
   <main>
-    <app-counter />
-    <app-rx-demo />
-    <app-event-timer />
-    <app-movie-list />
-    <app-rxjs-demo />
-
+    @if (currentView === 'home') {
+      <app-home />
+    } @else if (currentView === 'counter') {
+      <app-counter />
+      <app-event-timer />
+      <app-rx-demo />
+    } @else if (currentView === 'rxjsdemo') {
+      <app-rxjs-demo />
+      <app-movie-list />
+    }
   </main>
 </div>

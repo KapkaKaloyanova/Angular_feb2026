@@ -7,7 +7,9 @@ import { Observable, Subscription, take } from 'rxjs';
   // Ето го HTML-а:
   template: `
     <div style="border: 2px solid #5f33e1; padding: 20px; border-radius: 8px; text-align: center; max-width: 500px; margin: 20px auto;">
-      <h2>RxJS Demo<br>Обновяване на поток от данни <br> през 3 секунди и <br> спиране след 5 обновления </h2>
+      <h2>Периодично опресняване на данни</h2>
+      <h3>Timed Data Poller</h3>
+      <h2>Обновяване на поток от данни <br> през 3 секунди и <br> спиране след 5 обновления </h2>
       <p style="font-size: 1.2rem;">
         Данни от потока: <strong>{{ dataSignal() }}</strong>
       </p>

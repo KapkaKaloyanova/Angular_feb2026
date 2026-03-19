@@ -8,6 +8,9 @@ header {
   color: white;
   padding: 20px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header h1 {
@@ -17,23 +20,22 @@ header h1 {
 
 nav {
   display: flex;
-  gap: 4px;
-  padding: 12px;
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  gap: 8px;
 }
 
 nav button {
-  padding: 10px 20px;
+  padding: 8px 18px;
   border: none;
-  background: transparent;
-  font-size: 14px;
-  color: #64748b;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
   border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
 }
 
 nav button:hover {
-  background: #f1f5f9;
+  background: rgba(255, 255, 255, 0.22);
 }
 
 nav button.active {
