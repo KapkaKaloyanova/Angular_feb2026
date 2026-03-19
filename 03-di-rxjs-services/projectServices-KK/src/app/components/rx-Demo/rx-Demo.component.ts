@@ -6,23 +6,46 @@ import { Observable, Subscription, take } from 'rxjs';
   standalone: true,
   // Ето го HTML-а:
   template: `
-    <div style="border: 2px solid #5f33e1; padding: 20px; border-radius: 8px; text-align: center; max-width: 500px; margin: 20px auto;">
-      <h2>Периодично опресняване на данни</h2>
-      <h3>Timed Data Poller</h3>
-      <h2>Обновяване на поток от данни <br> през 3 секунди и <br> спиране след 5 обновления </h2>
-      <p style="font-size: 1.2rem;">
-        Данни от потока: <strong>{{ dataSignal() }}</strong>
-      </p>
-      <button (click)="restart()">Стартирай наново</button>
-      <div style="margin-top: 20px; text-align: center; border-top: 1px solid #ccc;">
-        <h3>Използвани технологии</h3>
-        <ul style="display: inline-block; text-align: center; list-style-position: inside; margin-top: 0px;">
-          <li style="margin-bottom: 10px;"><strong>RxJS</strong><br>new Observable, .pipe(take(5)), .subscribe()</li>
-          <li style="margin-bottom: 10px;"><strong>Signal</strong><br>dataSignal = signal(...) и this.dataSignal.set()</li>
-          <li style="margin-bottom: 10px;"><strong>Lifecycle Hooks</strong><br>ngOnInit, ngOnDestroy</li>
-        </ul>
-      </div>
+<div style="border: 2px solid #5f33e1; padding: 20px; border-radius: 8px; text-align: center; max-width: 500px; margin: 20px auto; font-family: sans-serif;">
+  
+  <h2 style="color: #3f51b5; margin-top: 0;">Периодично опресняване на данни</h2>
+  <p style="font-weight: bold; color: #3f51b5; margin-bottom: 20px;">Timed Data Poller</p>
+  
+  <h2 style="font-size: 1.3rem; line-height: 1.4; margin-bottom: 20px;">
+    Обновяване на поток от данни <br> 
+    през 3 секунди и <br> 
+    спиране след 5 обновления
+  </h2>
+  
+  <p style="font-size: 1.2rem; margin-bottom: 20px;">
+    Данни от потока: <strong>{{ dataSignal() }}</strong>
+  </p>
+  
+  <button (click)="restart()" style="background-color: #f0f0f0; border: 1px solid #999; padding: 5px 15px; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">
+    Стартирай наново
+  </button>
+  
+  <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center;">
+    <h3 style="color: #333; margin-bottom: 15px;">Използвани технологии</h3>
+    
+    <div style="display: flex; justify-content: center;">
+      <ul style="text-align: left; list-style-position: outside; padding-left: 20px; margin: 0; display: inline-block;">
+        <li style="margin-bottom: 10px;">
+          <strong>RxJS</strong><br>
+          <small>new Observable, .pipe(take(5)), .subscribe()</small>
+        </li>
+        <li style="margin-bottom: 10px;">
+          <strong>Signal</strong><br>
+          <small>dataSignal = signal(...) и this.dataSignal.set()</small>
+        </li>
+        <li>
+          <strong>Lifecycle Hooks</strong><br>
+          <small>ngOnInit, ngOnDestroy</small>
+        </li>
+      </ul>
     </div>
+  </div>
+</div>
   `,
 })
 export class RxDemoComponent implements OnInit, OnDestroy {
