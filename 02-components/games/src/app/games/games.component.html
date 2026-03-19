@@ -1,4 +1,8 @@
 <div class="games-container">
-  <p>games works!</p>
-  
+  <h2>List of games</h2>
+  <div class="games-grid">
+    @for (game of games; track game.id) {
+      <app-game-card /> 
+    }
+  </div>
 </div>
