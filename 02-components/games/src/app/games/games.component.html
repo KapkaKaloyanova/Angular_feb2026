@@ -4,7 +4,8 @@
     @for (game of games; track game.id) {
       <app-game-card 
       [game]="game" 
-      (addToCart)="onAddToCart($event)">
+      (addToCart)="onAddToCart($event)"
+      (deleteGame)="onDeleteGame($event)">
       </app-game-card>
     }
   </div>

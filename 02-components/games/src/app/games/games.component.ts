@@ -53,5 +53,13 @@ export class GamesComponent implements OnInit, OnDestroy {
   onAddToCart(game: Game) {
     this.cart.push(game);
     console.log(`Added ${game.title} to cart. Total items: ${this.cart.length}`);
+    console.log(this.cart);
+    
   }
+
+  onDeleteGame(gameId: number) {
+    this.games = this.games.filter(g => g.id !== gameId);
+    console.log(`Deleted game with id ${gameId}. Total games: ${this.games.length}`);
+    console.log(this.games);
+}
 }
