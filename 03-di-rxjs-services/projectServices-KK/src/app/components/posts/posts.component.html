@@ -17,6 +17,8 @@
             <button class="btn-delete" (click)="deletePost(post.id)">Delete post</button>
           </div>
         </div>
+      } @empty {
+        <p>Няма намерени постове.</p>
       }
     </div>
   }
