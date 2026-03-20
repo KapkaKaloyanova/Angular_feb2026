@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { Theme } from '../../../shared/interfaces/theme';
 import { ThemeItemComponent } from '../../../shared/components/theme-item-component/theme-item-component';
@@ -15,13 +14,12 @@ import { ThemeItemComponent } from '../../../shared/components/theme-item-compon
 export class ThemesList implements OnInit   {
   themes: Theme[] = [];
 
-  constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) { }
+  constructor(private apiService: ApiService) { }
 
 
   ngOnInit(): void {
     this.apiService.getThemes().subscribe((themes) => {
       this.themes = themes.sort((a, b) => b.subscribers.length - a.subscribers.length);
-      this.cdr.detectChanges();
     });
   }
 

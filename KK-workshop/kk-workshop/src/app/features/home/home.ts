@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ThemesList } from './themes-list/themes-list';
 import { RecentPostList } from './recent-post-list/recent-post-list';
+import { ThemesList } from './themes-list/themes-list';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ThemesList,RecentPostList],
+  imports: [RecentPostList, ThemesList],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
