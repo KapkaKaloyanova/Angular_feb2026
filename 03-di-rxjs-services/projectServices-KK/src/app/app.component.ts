@@ -5,10 +5,11 @@ import { EventTimerComponent } from './components/event-timer/event-timer.compon
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { RxjsDemoComponent } from './components/rxjs-demo/rxjs-demo.component';
 import { HomeComponent } from "./components/home/home.component";
+import { PostsComponent } from './components/posts/posts.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CounterComponent, RxDemoComponent, EventTimerComponent, MovieListComponent, RxjsDemoComponent, HomeComponent], 
+  imports: [CounterComponent, RxDemoComponent, EventTimerComponent, MovieListComponent, RxjsDemoComponent, HomeComponent, PostsComponent], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

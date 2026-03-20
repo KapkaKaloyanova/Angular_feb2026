@@ -5,6 +5,7 @@
       <button (click)="changeView('home')">Home</button>
       <button (click)="changeView('counter')">Counter</button>
       <button (click)="changeView('rxjsdemo')">RxJS</button>
+      <button (click)="changeView('Http')">HTTP</button>
     </nav>
   </header>
 
@@ -18,6 +19,8 @@
     } @else if (currentView === 'rxjsdemo') {
       <app-rxjs-demo />
       <app-movie-list />
+    } @else if (currentView === 'Http') {
+      <app-posts />
     }
   </main>
 </div>
