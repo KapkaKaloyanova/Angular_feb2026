@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Post } from '../../shared/interfaces/post';
@@ -8,9 +8,9 @@ import { Theme } from '../../shared/interfaces/theme';
   providedIn: 'root',
 })
 export class ApiService {
-private apiUrl = 'http://localhost:3000/api';
-   
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000/api';
+
 
   getThemes(): Observable<Theme[]> {
     return this.http.get<Theme[]>(`${this.apiUrl}/themes`);
