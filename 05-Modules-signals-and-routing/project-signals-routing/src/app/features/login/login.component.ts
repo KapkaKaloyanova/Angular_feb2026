@@ -13,16 +13,14 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggenIn();
+    return this.authService.isLoggedIn();
   }
 
   onLogin(): void {
     this.authService.login();
-    this.router.navigate(['/dashboard']);
   }
 
   onLogout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }
