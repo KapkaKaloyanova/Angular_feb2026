@@ -4,11 +4,12 @@ import { CountdownComponent } from './features/countdown/countdown.component';
 import { LoginComponent } from './features/login/login.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { MissionDetailsComponent } from './features/mission-details/mission-details.component';
+import { missionResolver } from './guards/mission-resolver';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'missions', pathMatch: 'full' },
     { path: 'missions', component: MissionsComponent },
-    { path: 'missions/:id', component: MissionDetailsComponent },
+    { path: 'missions/:id', component: MissionDetailsComponent, resolve: {mission: missionResolver}},
     { path: 'countdown', component: CountdownComponent },
     { path: 'login', component: LoginComponent },
     { path: '**', component: NotFoundComponent}
