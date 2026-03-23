@@ -10,6 +10,8 @@
             <p class="destination">{{ mission.destination }}</p>
             <p class="launch-date">{{ mission.launchDate }}</p>
             <p class="crew">Crew {{ mission.crew }} astronauts</p>
+
+            <a [routerLink]="['/missions', mission.id]" class="details-btn">View details</a>
         </div>
     }
 </div>
