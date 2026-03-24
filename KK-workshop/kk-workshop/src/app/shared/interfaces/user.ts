@@ -8,15 +8,8 @@ export interface User{
     ceated_at?: string;
 }
 
-export interface UserLogin{
-    email: string;
+export interface UserWithCredentials extends User{
     password: string;
-}
+}   
 
-export interface UserRegister{
-    username: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-}
 

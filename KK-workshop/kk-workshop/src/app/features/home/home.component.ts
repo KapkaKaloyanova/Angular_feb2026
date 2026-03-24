@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { RecentPostListComponent } from '../recent-post-list/recent-post-list.component';
-import { ThemesListComponent } from '../themes-list/themes-list.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RecentPostListComponent, ThemesListComponent],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
