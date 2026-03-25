@@ -1,20 +1,24 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { Route, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../core/services/api.service';
 import { Theme } from '../../../shared/interfaces/theme';
 import { Post } from '../../../shared/interfaces/post';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 
 
 @Component({
   selector: 'app-theme-content',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './theme-content.component.html',
   styleUrl: './theme-content.component.css',
 })
 export class ThemeContentComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private apiService = inject(ApiService);
+  private authService = inject(AuthService);
+
+  currentUserName = computed(() => this.authService.currentUser()?.username ?? 'Anonymous');
 
   theme: Theme | null = null;
   posts: Post[] = [];
@@ -35,5 +39,11 @@ export class ThemeContentComponent implements OnInit {
     this.apiService.getLatestPosts().subscribe((posts) => {
       this.posts = posts.filter((p: any) => p.themeId?._id === this.themeId);
     })
+  }
+
+  onPostComment(): void{
+    console.log('Posting comment', this.commentText);
+    this.commentText = '';
+    
   }
 }
