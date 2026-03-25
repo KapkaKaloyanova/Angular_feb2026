@@ -1,0 +1,18 @@
+<div class="misions">
+    <h2>Here see the missions</h2>
+<div class="mission-grid">
+    @for (mission of missions; track mission.id) {
+        <div class="mission-card">
+            <div class="mission-status status-{{ mission.status }}">
+                {{ mission.status }}
+            </div>
+            <h3>{{ mission.name }}</h3>
+            <p class="destination">{{ mission.destination }}</p>
+            <p class="launch-date">{{ mission.launchDate }}</p>
+            <p class="crew">Crew {{ mission.crew }} astronauts</p>
+
+            <a [routerLink]="['/missions', mission.id]" class="details-btn">View details</a>
+        </div>
+    }
+</div>
+</div>
