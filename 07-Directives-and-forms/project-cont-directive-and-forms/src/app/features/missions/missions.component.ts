@@ -13,6 +13,11 @@ import { HighlightDirective } from '../../directives/highlight.directive';
 })
 export class MissionsComponent {
   missions: Mission[] = [];
+  statusColors: Record<string, string> = {
+    'planned': '#155cb8',
+    'active': '#127238',
+    'completed': '#86868f'
+  };
 
   constructor(private missionService: MissionsService) {
     this.missions = this.missionService.getAllMissions();

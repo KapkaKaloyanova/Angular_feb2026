@@ -16,7 +16,7 @@ export class StatusStyleDirective implements OnChanges {
   padding: string = '4px 12px';
 
   @HostBinding('style.borderRadius')
-  borderRadius: string = '9px';
+  borderRadius: string = '15px';
 
   @HostBinding('style.fontSize')
   fontSize: string = '12px';
@@ -34,11 +34,11 @@ export class StatusStyleDirective implements OnChanges {
   private updateStyles(): void {
     switch (this.appStatusStyle) {
       case 'planned':
-        this.backgroundColor = '#1e3a5f'; break;
+        this.backgroundColor = '#155cb8'; break;
       case 'active':
-        this.backgroundColor = '#14532d'; break;
+        this.backgroundColor = '#127238'; break;
       case 'completed':
-        this.backgroundColor = '#3f3f46'; break;
+        this.backgroundColor = '#86868f'; break;
       default:
         this.backgroundColor = 'transparent'; break;
     }

@@ -36,7 +36,7 @@ export class HighlightDirective implements OnInit {
     this.render.setStyle(
       this.el.nativeElement,
       'transition',
-      'background-color 0.3s ease'
+      'background-color 0.5s ease'
     );
   }
 }
