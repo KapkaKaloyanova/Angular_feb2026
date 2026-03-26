@@ -8,6 +8,7 @@ import { missionResolver } from './guards/mission-resolver';
 import { CommandCenterComponent } from './features/command-center/command-center.component';
 import { authGuard } from './guards/auth-guard';
 import { CrewRegisterComponent } from './features/crew-register/crew-register.component';
+import { MissionFormComponent } from './features/mission-form/mission-form.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'missions', pathMatch: 'full' },
@@ -24,6 +25,8 @@ export const routes: Routes = [
     { path: 'countdown', component: CountdownComponent },
     
     { path: 'crew-register', component: CrewRegisterComponent },
+
+    { path: 'new-mission', component: MissionFormComponent},
 
     {
         path: 'command-center',
