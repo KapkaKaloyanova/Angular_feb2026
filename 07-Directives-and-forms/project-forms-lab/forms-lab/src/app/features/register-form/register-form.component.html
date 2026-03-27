@@ -1,0 +1,136 @@
+<div class="container">
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <h1>Registration Form</h1>
+
+      <p class="field field-icon">
+        <label for="username"
+          ><span><i class="fas fa-user"></i></span
+        ></label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          ngModel
+          required
+          #usernameInput="ngModel"
+          pattern="^[A-Z][a-z]+ [A-Z][a-z]+$"
+          class="error"
+          placeholder="Mark Ulrich"
+        />
+      </p>
+
+      @if (usernameInput.invalid && usernameInput.touched) {
+        <div class="alert alert-danger">
+          Full name is required and must contain two names starting with capital letters!
+        </div>
+      }
+      <p class="field field-icon">
+        <label for="email"
+          ><span><i class="fas fa-envelope"></i></span
+        ></label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          ngModel
+          required
+          email
+          #emailInput="ngModel"
+          placeholder="marк@gmial.com"
+        />
+      </p>
+      @if (emailInput.invalid && emailInput.touched) {
+        <div class="alert alert-danger">Enter valid email</div>
+      }
+
+      <p class="field field-icon">
+        <label for="tel"
+          ><span><i class="fas fa-phone"></i></span
+        ></label>
+        <select name="telCode" id="telCode" class="tel" [(ngModel)]="defaultTelCode">
+          @for (code of telCodes; track code) {
+            <option [value]="code">{{ code }}</option>
+          }
+        </select>
+        <input
+          type="text"
+          name="tel"
+          id="tel"
+          ngModel
+          pattern="[0-9]{9}$"
+          #telInput="ngModel"
+          placeholder="888 888"
+        />
+      </p>
+      @if (telInput.invalid && telInput.touched) {
+        <div class="alert alert-danger">Phone must be 9 digits</div>
+      }
+
+      <p class="field field-icon">
+        <label for="building"
+          ><span><i class="fas fa-building"></i></span
+        ></label>
+        <select name="building" id="building" [(ngModel)]="defaultProfession" class="building">
+          @for (profession of professions; track profession) {
+            <option [value]="profession">{{ profession }}</option>
+          }
+        </select>
+      </p>
+
+      <div ngModelGroup="passwordsGroup" #passGroup="ngModelGroup">
+        <p class="field field-icon">
+          <label for="password"
+            ><span><i class="fas fa-lock"></i></span
+          ></label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            ngModel
+            required
+            minlength="3"
+            maxlength="16"
+            pattern="[a-zA-Z0-9]+$"
+            #passwordInput="ngModel"
+            placeholder="******"
+          />
+        </p>
+
+        <p class="field field-icon">
+          <label for="re-password"
+            ><span><i class="fas fa-lock"></i></span
+          ></label>
+          <input
+            type="password"
+            name="re-password"
+            id="re-password"
+            ngModel
+            required
+            #rePasswordInput="ngModel"
+            placeholder="******"
+          />
+        </p>
+      </div>
+
+      @if (passGroup.invalid && (passwordInput.touched || rePasswordInput.touched)) {
+        <div class="alert alert-danger">
+          @if (passwordInput.errors?.['required'] || passwordInput.errors?.['pattern']) {
+            <span>Password must be 3-16 symbols (letters and digits only)</span>
+          }@else if (rePasswordInput.value !== passwordInput.value) {
+            <span>Passwords must match</span>
+          }
+        </div>
+      }
+
+      <p>
+        <button type="submit" [disabled]="registerForm.invalid || passwordInput.value !== rePasswordInput.value">Create Account</button>
+      </p>
+
+      <p class="text-center">
+        Have an account?
+        <a href="">Log In</a>
+      </p>
+    </fieldset>
+  </form>
+</div>
