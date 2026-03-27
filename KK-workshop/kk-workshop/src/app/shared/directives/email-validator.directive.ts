@@ -19,12 +19,12 @@ export class EmailValidatorDirective implements Validator {
       return null;
     }
 
-    const emailRegex = /[a-zA-Z0-9_\.%+-]{6,}@gmail\.(bg|com)$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]{6,}@gmail\.(bg|com)$/;
 
     if (!emailRegex.test(value)) {
       return { invalidEmail: true };
-    } else {
-      return null;
     }
+
+    return null;
   }
 }

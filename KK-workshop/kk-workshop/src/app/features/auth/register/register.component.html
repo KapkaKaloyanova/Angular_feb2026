@@ -9,7 +9,7 @@
           ><span><i class="fas fa-user"></i></span
         ></label>
         <input
-          class="input-error"
+          appInputError
           type="text"
           name="username"
           id="username"
@@ -17,7 +17,6 @@
           formControlName="username"
         />
       </p>
-
       @if (registerForm.get('username')?.touched && registerForm.get('username')?.invalid) {
         @if (registerForm.get('username')?.errors?.['required']) {
           <p class="error">Username is required!</p>
@@ -33,6 +32,7 @@
           ><span><i class="fas fa-envelope"></i></span
         ></label>
         <input
+          appInputError
           type="email"
           name="email"
           id="email"
@@ -55,13 +55,14 @@
         <input type="text" name="tel" id="tel" placeholder="885 888 888" formControlName="tel" />
       </p>
 
+      <!-- passwords group-->
       <ng-container formGroupName="passwords">
-        <!-- password -->
         <p class="field field-icon">
           <label for="password"
             ><span><i class="fas fa-lock"></i></span
           ></label>
           <input
+            appInputError
             type="password"
             name="password"
             id="password"
@@ -81,6 +82,7 @@
             ><span><i class="fas fa-lock"></i></span
           ></label>
           <input
+            appInputError
             type="password"
             name="rePassword"
             id="rePassword"

@@ -8,7 +8,3 @@ export interface Theme {
     subscribers: string[]
 };
 
-export interface CreateThemeData {
-    themeName: string,
-    postText: string
-};

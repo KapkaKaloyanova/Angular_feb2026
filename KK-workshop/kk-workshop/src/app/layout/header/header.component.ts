@@ -1,10 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
-import { RouterLink , Router, RouterLinkActive} from "@angular/router";
+import { RouterLink, Router, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive], 
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -17,8 +17,16 @@ export class HeaderComponent {
   username = computed(() => this.authService.currentUser()?.username ?? '');
 
   onLogout(): void {
-    this.authService.logout();
-    this.router.navigate(['/home']);
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
 }

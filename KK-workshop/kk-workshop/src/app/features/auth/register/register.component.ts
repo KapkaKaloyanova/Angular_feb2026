@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AuthService } from '../../../core/services/auth.service';
 import { emailValidator } from '../../../shared/validators/email.validator';
 import { passwordsMatchValidator } from '../../../shared/validators/passwords-match.validator';
+import { InputErrorDirective } from "../../../shared/directives/input-error.directive";
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, RouterLink, ReactiveFormsModule],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule, InputErrorDirective],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -34,7 +35,6 @@ export class RegisterComponent {
   }
 
   onRegister(): void {
-
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
@@ -61,8 +61,7 @@ export class RegisterComponent {
       error: (err) => {
         this.isLoading = false;
         this.errorMessage = err.error?.message || 'Registration failed. Try again';
-      },
+      }
     });
   }
-
 }

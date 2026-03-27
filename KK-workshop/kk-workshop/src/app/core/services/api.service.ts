@@ -2,7 +2,13 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Post } from '../../shared/interfaces/post';
-import { Theme, CreateThemeData } from '../../shared/interfaces/theme';
+import { Theme } from '../../shared/interfaces/theme';
+
+export interface CreateThemeData {
+    themeName: string,
+    postText: string
+};
+
 
 @Injectable({
   providedIn: 'root',
