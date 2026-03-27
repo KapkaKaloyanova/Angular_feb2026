@@ -1,28 +1,53 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
-
+import { InputErrorDirective } from '../../../shared/directives/input-error.directive';
+import { emailValidator } from '../../../shared/validators/email.validator';
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, InputErrorDirective, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
 
-  email = '';
-  password = '';
+  loginForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, emailValidator()]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
+  });
+
+  isLoading = false;
+  errorMessage = '';
 
   onLogin(): void {
-    const success = this.authService.login(this.email, this.password);
-    
-    if (success) {
-      this.router.navigate(['/themes']);
-    } else {
-      alert('Invalid ecredentials.');
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login({ email, password }).subscribe({
+
+      next: (user) => {
+        this.isLoading = false;
+        if (user) {
+          this.router.navigate(['/themes']);
+        } else {
+          this.errorMessage = 'Invalid email and password!';
+        }
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = err.error?.message || 'Login failed. Try again';
+      }
+    });
   }
 }

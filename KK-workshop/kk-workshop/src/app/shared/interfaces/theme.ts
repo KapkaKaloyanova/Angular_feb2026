@@ -6,4 +6,9 @@ export interface Theme {
         username: string;
     },
     subscribers: string[]
-}
+};
+
+export interface CreateThemeData {
+    themeName: string,
+    postText: string
+};

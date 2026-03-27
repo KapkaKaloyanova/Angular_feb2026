@@ -1,59 +1,68 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { UserService } from '../../../core/services/user.service';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
-import { User, UserWithCredentials } from '../../../shared/interfaces/user';
+import { emailValidator } from '../../../shared/validators/email.validator';
+import { passwordsMatchValidator } from '../../../shared/validators/passwords-match.validator';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   private authService = inject(AuthService);
-  private userService = inject(UserService);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
 
-  username = '';
-  email = '';
-  tel = '';
-  password = '';
-  rePassword = '';
+  registerForm: FormGroup = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(5)]],
+    email: ['', [Validators.required, emailValidator()]],
+    tel: [''],
+    passwords: this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      rePassword: ['', [Validators.required]],
+    }, { validators: passwordsMatchValidator }),
+  });
+
+  isLoading = false;
+  errorMessage = '';
+
+  get passwordsGroup(): FormGroup {
+    return this.registerForm.get('passwords') as FormGroup;
+  }
 
   onRegister(): void {
-    if (!this.email) {
-      alert('Email is required!');
-      return;
-    }
-    if (!this.password) {
-      alert('Password is required!');
-      return;
-    }
-    if (!this.username) {
-      alert('Username is required!');
-      return;
-    }
-    if (this.password !== this.rePassword) {
-      alert('Passwords do not match!');
+
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
       return;
     }
 
-    const newUser: UserWithCredentials = {
-      _id: this.generateId(),
-      username: this.username,
-      email: this.email,
-      tel: "+359" + this.tel,
-      password: this.password,
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    const { username, email, tel, passwords } = this.registerForm.value;
+
+    const userData = {
+      username,
+      email,
+      tel: tel ? '+359' + tel : undefined,
+      password: passwords.password
     };
 
-    const sessionUser: User = this.userService.register(newUser);
-    this.authService.setSession(sessionUser);
-    this.router.navigate(['/themes']);
+    this.authService.register(userData).subscribe({
+      next: (user) => {
+        this.authService.setSession(user);
+        this.isLoading = false;
+        this.router.navigate(['/themes']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = err.error?.message || 'Registration failed. Try again';
+      },
+    });
   }
 
-  private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
-  }
 }
