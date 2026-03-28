@@ -3,7 +3,6 @@ import { AuthService } from '../../core/services/auth.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { InputErrorDirective } from '../../shared/directives/input-error.directive';
 import { EmailValidatorDirective } from '../../shared/directives/email-validator.directive';
-import { User, ProfileUpdateData } from '../../shared/interfaces/user';
 
 
 @Component({
