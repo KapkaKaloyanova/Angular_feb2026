@@ -1,26 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { AsyncPipe } from '@angular/common';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private notifService = inject(NotificationService)
 
-  isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
-  }
+  isLoggedIn$ = this.authService.isLoggedIn$;
+  user$ = this.authService.user$;
 
   onLogin(): void {
-    this.authService.login();
+    this.authService.login('cosmonaut');
+    this.notifService.success('Welcome abord!'); 
+    this.router.navigate(['/missions'])
   }
 
   onLogout(): void {
     this.authService.logout();
+    this.notifService.success('You logged out');
   }
 }

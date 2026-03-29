@@ -12,25 +12,21 @@ import { MissionFormComponent } from './features/mission-form/mission-form.compo
 
 export const routes: Routes = [
     { path: '', redirectTo: 'missions', pathMatch: 'full' },
-    {
-        path: 'missions',
-        component: MissionsComponent,
-        canActivate: [authGuard]
-    },
+    { path: 'missions', component: MissionsComponent, canActivate: [authGuard] },
     {
         path: 'missions/:id',
         component: MissionDetailsComponent,
         resolve: { mission: missionResolver }
     },
     { path: 'countdown', component: CountdownComponent },
-    
-    { path: 'crew-register', component: CrewRegisterComponent },
 
-    { path: 'new-mission', component: MissionFormComponent},
+    { path: 'crew-register', component: CrewRegisterComponent },
+    { path: 'new-mission', component: MissionFormComponent },
 
     {
         path: 'command-center',
-        component: CommandCenterComponent,
+        loadComponent: () => import('./features/command-center/command-center.component')
+        .then(module => module.CommandCenterComponent),
         canActivate: [authGuard]
     },
     { path: 'login', component: LoginComponent },

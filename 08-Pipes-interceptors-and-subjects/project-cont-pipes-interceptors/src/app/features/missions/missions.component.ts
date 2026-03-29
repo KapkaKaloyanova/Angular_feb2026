@@ -4,7 +4,7 @@ import { Mission } from '../../interfaces/mission.interface';
 import { RouterLink } from "@angular/router";
 import { StatusStyleDirective } from '../../directives/status-style.directive';
 import { HighlightDirective } from '../../directives/highlight.directive';
-import { MissionStatusPipe } from '../../pipes/mission-status.pipe';
+import { MissionStatusPipe } from '../../pipes/mission-status-pipe';
 import { TimeUntilPipe } from '../../pipes/time-until-pipe';
 
 @Component({

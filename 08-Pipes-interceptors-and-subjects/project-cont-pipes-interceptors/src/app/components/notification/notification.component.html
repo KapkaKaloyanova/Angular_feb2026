@@ -1,0 +1,7 @@
+@if (notification) {
+  <div class="notification" [class]="notification.type">
+    <span class="icon">{{ getIcon(notification.type) }}</span>
+    <span class="message">{{ notification.message }}</span>
+    <button class="close" (click)="dismiss()"></button>
+  </div>
+}
