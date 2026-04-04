@@ -8,7 +8,6 @@ import { ThemeContentComponent } from './features/themes/theme-content/theme-con
 import { authGuard } from './core/guards/auth-guard';
 import { ProfileComponent } from './features/profile/profile.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
-import { ProfileEditComponent } from './features/profile-edit/profile-edit.component';
 
 export const routes: Routes = [
 
@@ -23,7 +22,6 @@ export const routes: Routes = [
     { path: 'add-theme', component: NewThemeComponent, canActivate: [authGuard] },
 
     { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
-    // {path: 'profile/edit', component: ProfileEditComponent, canActivate: [authGuard]},  
 
 
     { path: '**', component: NotFoundComponent },

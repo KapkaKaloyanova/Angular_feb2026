@@ -1,8 +1,11 @@
 <main>
   <div class="theme-title">
     <!-- theme component  -->
-    @for (theme of themes; track theme._id) {
-       <app-theme-item [theme]="theme"/>
+    @if (isLoading$ | async) {
+      <p>Loading themes...</p>
+    }
+    @for (theme of themes$ | async; track theme._id) {
+      <app-theme-item [theme]="theme" />
     }
   </div>
 </main>
